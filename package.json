@@ -1,51 +1,91 @@
 {
   "name": "vscode-webview-extension-with-react",
-	"displayName": "vscode-webview-extension-with-react",
-	"description": "Example of create webview",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.64.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-        "onCommand:vscode-webview-extension-with-react.helloWorld"
-	],
-	"main": "./dist/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "vscode-webview-extension-with-react.helloWorld",
-				"title": "Hello World"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run package",
-		"compile": "webpack",
-		"watch": "webpack --watch",
-		"package": "webpack --mode production --devtool hidden-source-map",
-		"compile-tests": "tsc -p . --outDir out",
-		"watch-tests": "tsc -p . -w --outDir out",
-		"pretest": "npm run compile-tests && npm run compile && npm run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/vscode": "^1.64.0",
-		"@types/glob": "^7.2.0",
-		"@types/mocha": "^9.1.0",
-		"@types/node": "14.x",
-		"@typescript-eslint/eslint-plugin": "^5.12.1",
-		"@typescript-eslint/parser": "^5.12.1",
-		"eslint": "^8.9.0",
-		"glob": "^7.2.0",
-		"mocha": "^9.2.1",
-		"typescript": "^4.5.5",
-		"ts-loader": "^9.2.6",
-		"webpack": "^5.69.1",
-		"webpack-cli": "^4.9.2",
-		"@vscode/test-electron": "^2.1.2"
-	}
+  "displayName": "vscode-webview-extension-with-react",
+  "description": "Example of create webview",
+  "publisher": "HuyQLuong",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.64.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:vscode-webview-extension-with-react.helloWorld",
+    "onView:left-panel-webview"
+  ],
+  "main": "./dir/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscode-webview-extension-with-react.helloWorld",
+        "title": "Hello World"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "webview",
+          "title": "Example for webview",
+          "icon": "src/assets/extension-icon.png"
+        }
+      ]
+    },
+    "views": {
+      "webview": [
+        {
+          "type": "webview",
+          "id": "left-panel-webview",
+          "name": "Webview",
+          "icon": "src/assets/extension-icon.png"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "npm run tsc -p ./",
+    "watch": "tsc -watch -p ./ && npm run compile",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./dir/test/runTest.js",
+    "cp-icon": "mkdir ./dir/assets && cp -R ./assets/* ./dir/assets",
+    "vscode:package": "vsce package",
+    "test-compile": "tsc -p ./",
+    "webpack:int": "rm -rf ./dir/* && cp ../env/int.env .env && webpack --mode development",
+    "webpack:prod": "rm -rf ./dir/* && cp ../env/prod.env .env && webpack --mode production",
+    "webpack:onprem": "rm -rf ./dir/* && cp ../env/onprem.env .env && webpack --mode production",
+    "package:int": "rm -rf *.vsix && npm run webpack:int && vsce package",
+    "package:prod": "rm -rf *.vsix && npm run webpack:prod && vsce package",
+    "package:onprem": "rm -rf *.vsix && npm run webpack:onprem && vsce package"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.64.0",
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "@vscode/test-electron": "^2.1.2",
+    "eslint": "^8.9.0",
+    "glob": "^7.2.0",
+    "mocha": "^9.2.1",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.5",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "@types/react-dom": "^17.0.11",
+    "dotenv-webpack": "^7.1.0",
+    "module-alias": "^2.2.2",
+    "path": "^0.12.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "_moduleAliases": {
+    "utils": "dir/utils",
+    "providers": "dir/providers",
+    "components": "dir/components",
+    "constant": "dir/constant.js"
+  }
 }
