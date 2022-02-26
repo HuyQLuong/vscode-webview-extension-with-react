@@ -42,7 +42,7 @@ export class LeftPanelWebview implements WebviewViewProvider {
 		);
 		// CSS file to handle styling
 		const styleUri = webview.asWebviewUri(
-			Uri.joinPath(this.extensionPath, "script", "codeContext.css")
+			Uri.joinPath(this.extensionPath, "script", "left-webview-provider.css")
 		);
 
 		//vscode-icon file from codicon lib
@@ -72,7 +72,7 @@ export class LeftPanelWebview implements WebviewViewProvider {
                     ${
                         
                         ReactDOMServer.renderToString((
-							<LeftPanel message={"HelloWorld"}></LeftPanel>
+							<LeftPanel message={"Tutorial for Left Panel Webview in VSCode extension"}></LeftPanel>
 						))
                     }
                 <script nonce="${nonce}" src="${scriptUri}"></script>

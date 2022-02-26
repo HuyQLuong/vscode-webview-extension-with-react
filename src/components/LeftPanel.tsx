@@ -10,7 +10,7 @@ function LeftPanel({
 }: LeftPanelProp){
     return (
         <div className='panel-wrapper'>
-            <span>{message}</span>
+            <span className='panel-info'>{message}</span>
            <Button></Button>
         </div>
     );
