@@ -3,7 +3,7 @@
   "displayName": "vscode-webview-extension-with-react",
   "description": "Example of create webview",
   "publisher": "HuyQLuong",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.64.0"
   },
@@ -14,7 +14,7 @@
     "onCommand:vscode-webview-extension-with-react.helloWorld",
     "onView:left-panel-webview"
   ],
-  "main": "./dir/extension.js",
+  "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
@@ -27,7 +27,7 @@
         {
           "id": "webview",
           "title": "Example for webview",
-          "icon": "src/assets/extension-icon.png"
+          "icon": "./assets/extension-icon.png"
         }
       ]
     },
@@ -45,18 +45,9 @@
   "scripts": {
     "compile": "npm run tsc -p ./",
     "watch": "tsc -watch -p ./ && npm run compile",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./dir/test/runTest.js",
-    "cp-icon": "mkdir ./dir/assets && cp -R ./assets/* ./dir/assets",
     "vscode:package": "vsce package",
-    "test-compile": "tsc -p ./",
-    "webpack:int": "rm -rf ./dir/* && cp ../env/int.env .env && webpack --mode development",
-    "webpack:prod": "rm -rf ./dir/* && cp ../env/prod.env .env && webpack --mode production",
-    "webpack:onprem": "rm -rf ./dir/* && cp ../env/onprem.env .env && webpack --mode production",
-    "package:int": "rm -rf *.vsix && npm run webpack:int && vsce package",
-    "package:prod": "rm -rf *.vsix && npm run webpack:prod && vsce package",
-    "package:onprem": "rm -rf *.vsix && npm run webpack:onprem && vsce package"
+    "webpack": "rm -rf ./dist/* && webpack --mode development",
+    "package": "rm -rf *.vsix && npm run webpack && vsce package"
   },
   "devDependencies": {
     "@types/glob": "^7.2.0",
@@ -83,9 +74,9 @@
     "react-dom": "^17.0.2"
   },
   "_moduleAliases": {
-    "utils": "dir/utils",
-    "providers": "dir/providers",
-    "components": "dir/components",
-    "constant": "dir/constant.js"
+    "utils": "dist/utils",
+    "providers": "dist/providers",
+    "components": "dist/components",
+    "constant": "dist/constant.js"
   }
 }

@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"module": "commonjs",
 		"target": "es6",
-		"outDir": "dir",
+		"outDir": "dist",
 		"lib": [
 			"es6",
 			"dom"
