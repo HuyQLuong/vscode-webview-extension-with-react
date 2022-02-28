@@ -1,4 +1,4 @@
-import { WebviewViewProvider, WebviewView, Webview, Uri, EventEmitter} from "vscode";
+import { WebviewViewProvider, WebviewView, Webview, Uri, EventEmitter, window} from "vscode";
 import { Utils } from "utils";
 import LeftPanel from 'components/LeftPanel';
 import * as ReactDOMServer from "react-dom/server";
@@ -28,7 +28,15 @@ export class LeftPanelWebview implements WebviewViewProvider {
 	}
 
 	private activateMessageListener() {
-		this._view.webview.onDidReceiveMessage(() => {});
+		this._view.webview.onDidReceiveMessage((message) => {
+			switch (message.action){
+				case 'SHOW_WARNING_LOG':
+					window.showWarningMessage(message.data.message);
+					break;
+				default:
+					break;
+			}
+		});
 	}
 
 	private _getHtmlForWebview(webview: Webview) {
