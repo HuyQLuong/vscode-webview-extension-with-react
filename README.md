@@ -98,5 +98,6 @@ vscode-webview-extension-with-react is a repo to illustrate how to register a we
 - Using this way of communication between webview and extension, we also can create a message chanel between 2 separated webview in some complicated vscode extension
 
 
+Reference url: https://medium.com/@luongquochuy1995/create-a-vs-code-left-panel-web-view-extension-using-react-e765fd901f64
 
 **If you have any further question, feel free to contact luongquochuy1995@gmail.com**
