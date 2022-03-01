@@ -18,7 +18,7 @@ vscode-webview-extension-with-react is a repo to illustrate how to register a we
             "views": {
                 "webview": [
                     {
-                        "type": "webview",
+                        "type": "left-panel-webviews",
                         "id": "left-panel-webview",
                         "name": "Webview",
                         "icon": "src/assets/extension-icon.png"
@@ -57,7 +57,7 @@ vscode-webview-extension-with-react is a repo to illustrate how to register a we
 
 # 2. How to render react component in vscode and handle user action
 
-- When calling Webview for the first time, `_getHtmlForWebview` will be called and expect to return the html file of the webview. We will use `ReactDOM.renderToString` to concat the react component into `body` tag of the html file. In that case, react component will be rendered.
+- When calling Webview for the first time, `resolveWebviewView` will be called and expect to return the html file of the webview. We will use `ReactDOM.renderToString` to concat the react component into `body` tag of the html file. In that case, react component will be rendered.
 
 ```
 <body>
